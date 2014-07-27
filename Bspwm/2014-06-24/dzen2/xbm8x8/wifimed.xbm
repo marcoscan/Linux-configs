@@ -1,0 +1,4 @@
+#define wifimed_width 3
+#define wifimed_height 8
+static unsigned char wifimed_bits[] = {
+   0x00, 0x00, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06 };

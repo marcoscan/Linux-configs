@@ -1,0 +1,4 @@
+#define wifihigh_backup_28_11_2012_width 2
+#define wifihigh_backup_28_11_2012_height 8
+static unsigned char wifihigh_backup_28_11_2012_bits[] = {
+   0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02 };

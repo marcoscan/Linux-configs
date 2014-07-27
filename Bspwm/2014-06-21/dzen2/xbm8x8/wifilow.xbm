@@ -1,0 +1,4 @@
+#define wifilow_width 5
+#define wifilow_height 8
+static unsigned char wifilow_bits[] = {
+   0x00, 0x00, 0x00, 0x00, 0x18, 0x18, 0x1b, 0x1b };

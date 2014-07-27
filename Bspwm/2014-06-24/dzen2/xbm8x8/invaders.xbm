@@ -1,0 +1,4 @@
+#define invaders_width 8
+#define invaders_height 8
+static unsigned char invaders_bits[] = {
+   0x42, 0x24, 0x7e, 0x5a, 0xff, 0xa5, 0xbd, 0x24 };

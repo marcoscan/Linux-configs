@@ -1,0 +1,13 @@
+background yes
+use_xft yes
+text_buffer_size 2048
+out_to_console yes
+out_to_x no
+update_interval 1
+update_interval_on_battery 3
+total_run_times 0
+double_buffer yes
+maximum_width 622 5
+
+TEXT
+${if_gw}${if_existing /proc/net/route wlan0} ${if_match ${wireless_link_qual_perc wlan0} > 80} ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifilow.xbm)^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifimed.xbm)^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifihigh.xbm)${endif}${if_match ${wireless_link_qual_perc wlan0} <= 80}${if_match ${wireless_link_qual_perc wlan0} > 40} ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifilow.xbm)^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifimed.xbm)^fg(\#6e6e6e)^i(~/.config/bspwm/dzen2/xbm8x8/wifihigh.xbm)${endif}${endif}${if_match ${wireless_link_qual_perc wlan0} <= 40} ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/wifilow.xbm)^fg(\#6e6e6e)^i(~/.config/bspwm/dzen2/xbm8x8/wifimed.xbm)^fg(\#6e6e6e)^i(~/.config/bspwm/dzen2/xbm8x8/wifihigh.xbm)${endif}  ^fg(\#d0d0d0)${wireless_essid wlan0} ${endif}${if_existing /proc/net/route eth0}  ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/net_wired.xbm)  ^fg(\#d0d0d0)Eth0 ${endif}${else} ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/net_down.xbm)  ^fg(\#d0d0d0)Non connesso${endif}   ^fg(\#afd700)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(~/.config/bspwm/dzen2/xbm8x8/note.xbm)^ca()  ^fg(\#d0d0d0)${mpd_artist} - ^fg(\#d0d0d0)${mpd_title}   ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/volume.xbm)  ^fg(\#d0d0d0)${execi 1 amixer sget 'Master' | grep "Front Left:"| egrep -o '([0-9]+%|\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}   ^fg(\#afd700)^ca(1,urxvt -lsp 1 -e htop)^i(~/.config/bspwm/dzen2/xbm8x8/cpu.xbm)^ca()  ^fg(\#d0d0d0)${cpu cpu1}% - ${cpu cpu2}%   ^fg(\#afd700)^i(~/.config/bspwm/dzen2/xbm8x8/invaders.xbm)  ^fg(\#d0d0d0)${top name 1}
