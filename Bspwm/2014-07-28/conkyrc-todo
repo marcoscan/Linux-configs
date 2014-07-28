@@ -1,0 +1,40 @@
+background yes
+use_xft yes
+xftfont dejavu sans:size=8
+update_interval 1.0
+update_interval_on_battery 360.0
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_colour black
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 140
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color white
+alignment bottom_left
+gap_x 42
+gap_y 28
+no_buffers yes
+uppercase no
+override_utf8_locale yes
+use_spacer none
+text_buffer_size 2048
+default_color D0D0D0
+color1 585858
+
+TEXT
+
+${color #afd700}${font dejavu sans:size=9}Reminders${font} $color
+
+${color #d0d0d0}${execi 30 /home/marco/.config/bspwm/Scripts/reminders.sh} $color
+
+
+
+${color #afd700}${font dejavu sans:size=9}Todo${font} $color
+
+${color #dedede}${execi 30 /home/marco/.config/bspwm/Scripts/daily-todo.sh} $color
