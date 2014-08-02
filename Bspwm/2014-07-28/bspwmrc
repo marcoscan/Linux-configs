@@ -20,12 +20,10 @@ export PATH=$PATH:/home/marco/.config/bspwm/
 export XDG_CONFIG_HOME="/home/marco/.config"
 export BSPWM_SOCKET="/tmp/bspwm-socket"
 
-# added 2014-06-16
 bspc rule -a Gmrun floating=true center=true focus=true
 bspc rule -a Gxmessage floating=true center=true
 bspc rule -a File-roller floating=true
 bspc rule -a Engrampa floating=true
-#bspc rule -a Transmission-gtk pseudo_tiled=on
 
 bspc config external_rules_command "$(which ~/.config/bspwm/Scripts/bspwm_rules.sh)"
 
