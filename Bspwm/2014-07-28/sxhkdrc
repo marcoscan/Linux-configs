@@ -156,3 +156,11 @@ alt + v
 # flip leaves horizontally
 alt + c
     bspc desktop -F horizontal
+
+# decolor focused window border
+super + z
+    bspc config focused_border_color "#303030"
+
+# recolor focused window border
+super + x
+    bspc config focused_border_color "#AFD700"
