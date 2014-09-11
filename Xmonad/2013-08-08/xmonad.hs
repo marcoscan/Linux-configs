@@ -61,7 +61,6 @@ myBorderWidth   = 3
 -- "windows key" is usually mod4Mask.
 --
 myModMask       = mod1Mask
-
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
 -- workspace name. The number of workspaces is determined by the length
