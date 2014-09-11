@@ -5,7 +5,7 @@ while true; do
 if [ $(bspc query -W -d | wc -l) -ne 0 ] ; then
 
 bspc desktop --layout tiled
-bspc config focused_border_color "#AFD700"
+bspc config focused_border_color "#787878"
         exit 1
 else
 
