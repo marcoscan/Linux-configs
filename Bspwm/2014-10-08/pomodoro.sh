@@ -1,4 +1,5 @@
 #!/bin/bash
+# kudos to https://github.com/tiagocampo/zepomo-indicator
 
 clear
 set -e
