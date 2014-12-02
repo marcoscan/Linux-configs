@@ -1,0 +1,23 @@
+background yes
+use_xft yes
+# xftfont Bitstream Vera Sans:size=8
+text_buffer_size 1048
+out_to_console yes
+out_to_x no
+# Update interval in seconds
+update_interval 1
+update_interval_on_battery 3
+total_run_times 0
+double_buffer yes
+maximum_width 246 5
+
+ 
+TEXT
+${if_match "${acpiacadapter}" == "off-line"}\
+${if_match ${battery_percent} > 40}^fg(\#afd700) ^i(/home/marco/.config/bspwm/dzen2/xbm8x8/bat_full_01.xbm)${endif}\
+${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00) ^ca(1,~/.config/bspwm/Scripts/dzen2-battery.sh)^i(/home/marco/.config/bspwm/dzen2/xbm8x8/bat_low_01.xbm)^ca()${endif}${endif}\
+${if_match ${battery_percent} <= 15}^fg(red) ^ca(1,~/.config/bspwm/Scripts/dzen2-battery.sh)^i(/home/marco/.config/bspwm/dzen2/xbm8x8/bat_empty_01.xbm)^ca()${endif}\
+${if_match ${battery_percent} <= 14}${endif}\
+${else}^fg(\#afd700) ^ca(1,~/.config/bspwm/Scripts/dzen2-battery.sh)^i(/home/marco/.config/bspwm/dzen2/xbm8x8/ac_01.xbm)^ca()${endif} \
+^fg(\#d0d0d0) ${battery_percent}%  \
+ ^fg(\#afd700)^ca(1,scrot -t 20 -d 1 ~/Warehouse/Archlinux/Screenshots/%Y-%m-%d-%T-screenshot.png)^i(/home/marco/.config/bspwm/dzen2/xbm8x8/screenshot.xbm)^ca() ^fg(\#afd700)  ^ca(1,~/.config/bspwm/Scripts/mixed.sh)^i(/home/marco/.config/bspwm/dzen2/xbm8x8/todo-quick-note.xbm)^ca() ^fg(\#d0d0d0) ^ca(1,~/.config/bspwm/Scripts/gxmessage-calendar.sh)${time %a %d %m}^ca() ^fg(\#afd700) ${time %R}  ${color 303030}${color}
