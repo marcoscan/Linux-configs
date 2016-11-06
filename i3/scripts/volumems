@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# mpd + vol scripts :-)
+muted=$(amixer sget 'Master' | awk 'NR==6 {print $6}' | sed -r 's/\[(off|on)\]/\1/');
+volume=$(amixer sget 'Master' | awk 'NR==6 {print $5}' | sed -r 's/\[([0-9]+)%\]/\1/');
+song=$(mpc current -f '[[%artist% - ]%title%]|[%file%]' | sed -e "s/.*/ &   /");
+
+if [[ $muted == "off" ]]; then
+	echo " $song Mute "
+elif [[ $muted == "on" ]]; then
+	echo " $song $volume% "
+fi

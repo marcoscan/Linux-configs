@@ -1,0 +1,43 @@
+conky.config = {
+    alignment = 'bottom_left',
+    background = true,
+    use_xft = true,
+    font = 'DejaVu Sans:size=10',
+    update_interval = 1.0,
+    update_interval_on_battery = 360.0,
+    double_buffer = true,
+    own_window = true,
+    own_window_type = 'override',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+    uppercase = false,
+    gap_x = 42,
+    gap_y = 38,
+    use_spacer = 'none',
+    default_outline_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    no_buffers = true,
+    minimum_height = 40,
+    minimum_width = 140,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    stippled_borders = 0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false,
+    override_utf8_locale = yes
+}   
+
+conky.text = [[
+${color #afd700}${font DejaVu Sans:size=10}Reminders${font} $color
+
+${color #d0d0d0}${execi 30 ~/.config/i3/scripts/reminders.sh} $color
+
+${color #dedede}${execi 30 ~/.config/i3/scripts/daily-todo.sh} $color
+]]
+

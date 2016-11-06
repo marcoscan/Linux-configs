@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [[ $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | perl -lane 'print $F[1] if /native-path/') =~ .*null.* ]]; then
+   echo ''
+else
+    percent=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | perl -lane 'print $F[1] if /percent/')
+    charging=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | perl -lane 'print $F[1] if /state/')
+    if [[ $charging =~ discharging ]]; then
+		value=$(echo ${percent} | cut -c1-2)
+		if [[ $value -lt 100 ]] && [[ $value -ge 85 ]]; then
+			echo " &#xf240;   $percent "
+		elif [[ $value -lt 85 ]] && [[ $value -ge 50 ]]; then
+			echo " &#xf241;   $percent "
+		elif [[ $value -lt 50 ]] && [[ $value -ge 25 ]]; then
+			echo " &#xf242;   $percent "
+		elif [[ $value -lt 25 ]] && [[ $value -ge 10 ]]; then
+			echo " &#xf243;   $percent "
+		elif [[ $value -lt 10 ]] && [[ $value -ge 3 ]]; then
+			a="LOW BATTERY! Time left is "
+			b=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | perl -lane 'print $F[3], " ",  $F[4] if /time/')
+			c="  $a $b"
+			echo $c | gxmessage  -timeout 5 -buttons "Close:1" -default "Close" -geometry 260x10 -center -font "DejaVu Sans Mono 8" -wrap -title "Low battery" -file -   			
+		elif [[ $value -lt 3 ]] && [[ $value -ge 1 ]]; then
+			sleep 5
+			systemctl suspend
+		else
+			echo " &#xf244;   $percent "			
+		fi
+	elif [[ $charging =~ fully-charged ]]; then
+		echo " &#xf240;   $percent "
+	else
+		echo " &#xf0e7;   $percent "
+	fi
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "$(pidof sylpheed)" ]]; then
+	sylpheedmail=$(sylpheed --status INBOX | awk '{print $2}');
+	echo "  $sylpheedmail "
+#else
+#	echo " "
+fi
