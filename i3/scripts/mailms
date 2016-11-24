@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$(pidof sylpheed)" ]]; then
-	sylpheedmail=$(sylpheed --status INBOX | awk '{print $2}');
+	sylpheedmail=$(sylpheed --status-full | awk '/INBOX/{ SUM += $2} END { print SUM}');
 	echo "  $sylpheedmail "
 #else
 #	echo " "
