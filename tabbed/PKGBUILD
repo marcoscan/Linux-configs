@@ -1,0 +1,54 @@
+pkgname=tabbed-git
+_pkgname=tabbed
+pkgver=20160425.bc23614
+pkgrel=1
+pkgdesc="Simple generic tabbed fronted to xembed aware applications"
+url='http://git.suckless.org/tabbed/'
+arch=('i686' 'x86_64')
+license=('MIT/X')
+depends=('libxft')
+makedepends=('ncurses' 'libxext' 'git')
+source=('git://git.suckless.org/tabbed'
+	'tabbed-0.5-autohide.diff')
+
+sha1sums=('SKIP' 'SKIP')
+
+md5sums=('SKIP' 'SKIP')
+
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+	git log -1 --format='%cd.%h' --date=short | tr -d -
+}
+
+prepare() {
+	local file
+	cd "${srcdir}/${_pkgname}"
+	sed '/@tic/d' -i Makefile
+	for file in "${source[@]}"; do
+		if [[ "$file" == "config.h" ]]; then
+			# add config.h if present in source array
+			# Note: this supersedes the above sed to config.def.h
+			cp "$srcdir/$file" .
+			continue
+		elif [[ "$file" == *.diff ]]; then
+			# add all patches present in source array
+			patch -Np1 <"$srcdir/$file"
+		fi
+	done
+}
+
+build() {
+	cd "${srcdir}/${_pkgname}"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}"
+	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
+}
+
